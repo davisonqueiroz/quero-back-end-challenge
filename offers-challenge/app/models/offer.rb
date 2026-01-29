@@ -5,4 +5,12 @@ class Offer < ApplicationRecord
   enum kind: { presencial: 'presencial', ead: 'ead'  }
   enum level: { tecnologo: 'tecnologo', licenciatura: 'licenciatura', bacharelado: 'bacharelado' } 
   validates :discount_percentage, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
+  before_save :calculate_discount_percentage
+
+  private
+
+  def calculate_discount_percentage
+    self.discount_percentage = (self.full_price - self.offered_price) / self.full_price
+  end
+
 end
