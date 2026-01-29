@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: quero-challenge
+  password: chalenge1234
+  host: localhost
+  min_messages: WARNING
+
+
+development:
+  <<: *default
+  database: offers_challenge_development
+
+test:
+  <<: *default
+  database: offers_challenge_test
+
+production:
+  <<: *default
+  database: offers_challenge_production
+  username: quero-challenge
+  password: <%= ENV["blog_DATABASE_PASSWORD"] %>
+  host: localhost
+  port: 5432
