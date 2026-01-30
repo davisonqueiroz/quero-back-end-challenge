@@ -13,23 +13,23 @@ class OfferSerializer < ActiveModel::Serializer
   }.freeze
 
   def refined_level
-    LEVELS[self.level]
+    LEVELS[object.level]
   end
 
   def refined_kind
-    KINDS[self.kind]
+    KINDS[object.kind]
   end
 
   def display_offered_price
-    "R$ #{self.offered_price}"
+    "R$ #{object.offered_price}"
   end
 
   def display_full_price
-    "R$ #{'%.2f' % self.full_price}".sub('.',',')
+    "R$ #{'%.2f' % object.full_price}".sub('.',',')
   end
 
   def display_discount_percentage
-    "#{(self.discount_percentage * 100).round}%"
+    "#{(object.discount_percentage * 100).round}%".sub('.',',')
   end
 
 end
