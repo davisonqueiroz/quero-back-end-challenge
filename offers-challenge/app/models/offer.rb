@@ -12,7 +12,7 @@ class Offer < ApplicationRecord
     bacharelado: 'bacharelado'
   } 
   validates :discount_percentage, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
-  before_save :calculate_discount_percentage
+  before_validation :calculate_discount_percentage
 
   private
 
