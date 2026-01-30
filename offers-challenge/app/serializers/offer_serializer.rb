@@ -1,5 +1,11 @@
 class OfferSerializer < ActiveModel::Serializer
-  attributes :id, :ies_name, :ies_logo, :course_name, :refined_level, :refined_kind, :display_full_price, :display_offered_price, :display_discount_percentage, :rating
+  attributes :id, :ies_name, :ies_logo, :course_name
+  attribute :refined_level, key: :level
+  attribute :refined_kind, key: :kind
+  attribute :display_full_price, key: :fullPrice
+  attribute :display_offered_price, key: :offeredPrice
+  attribute :display_discount_percentage, key: :discountPercentage
+  attributes :rating
 
   LEVELS = {
     'tecnologo' => 'Tecnólogo (graduação)',
@@ -21,7 +27,7 @@ class OfferSerializer < ActiveModel::Serializer
   end
 
   def display_offered_price
-    "R$ #{object.offered_price}"
+    "R$ #{object.offered_price}".sub('.',',')
   end
 
   def display_full_price
@@ -29,7 +35,7 @@ class OfferSerializer < ActiveModel::Serializer
   end
 
   def display_discount_percentage
-    "#{(object.discount_percentage * 100).round}%".sub('.',',')
+    "#{(object.discount_percentage * 100).round}%"
   end
 
 end
