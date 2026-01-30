@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   def index
-    @offers = Offer.all
+    @offers = FilteredOffersQuery.new(params).call
     render json: @offers, each_serializer: OfferSerializer
 
   end
