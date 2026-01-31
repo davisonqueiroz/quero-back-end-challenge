@@ -51,4 +51,7 @@ group :development, :test do
   gem 'dotenv-rails', groups: [:development, :test]
 
   gem 'active_model_serializers', '~> 0.10.2'
+
+gem 'pagy', '~> 6.0'
+  
 end
