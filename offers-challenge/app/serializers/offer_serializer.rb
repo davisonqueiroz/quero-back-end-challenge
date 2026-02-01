@@ -38,4 +38,11 @@ class OfferSerializer < ActiveModel::Serializer
     "#{(object.discount_percentage * 100).round}%"
   end
 
+  def attributes(*args)
+    data = super
+    request = instance_options[:fields]
+    return data unless request.present?
+
+    data.slice(*request.map(&:to_sym))
+  end
 end
