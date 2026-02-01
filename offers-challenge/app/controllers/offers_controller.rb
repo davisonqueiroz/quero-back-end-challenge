@@ -9,6 +9,7 @@ class OffersController < ApplicationController
 
     render json: offers,
            each_serializer: OfferSerializer,
+           fields: params[:fields].split(','),
            meta: pagination_meta(pagy)
   end
 
